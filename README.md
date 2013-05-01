@@ -16,7 +16,7 @@ var trajectory = require('voxel-trajectory');
 var camera = game.cameraRotation();
 
 // rotate the axis -90 degs to throw forward
-camera.x -= Math.PI / 2;
+camera[0] -= Math.PI / 2;
 
 // create an item with a velocity of 2 towards trajectory
 var item = {
@@ -36,16 +36,16 @@ var meteor = {
     // pretty fast
     velocity: 5,
     // 45 degrees
-    rotation: {x: Math.PI / 180 * 45, y: Math.PI / 180 * 45},
+    rotation: [Math.PI / 180 * 45, Math.PI / 180 * 45, 0],
     // from the sky
-    origin:   {x: 1000, y: 5000, z: 1000}
+    origin:   [1000, 5000, 1000]
   })
 };
 ```
 
 # api
 
-`trajectory([velocity:number, rotation:{x,y}, origin:{x,y,z}])`
+`trajectory([velocity:number, rotation:[x, y, z], origin:[x, y, z]])`
 
 # install
 
@@ -58,6 +58,7 @@ npm install voxel-trajectory
 Use [browserify](http://browserify.org) to `require('voxel-trajectory')`.
 
 ## release history
+* 0.2.0 - update to use arrays
 * 0.1.0 - initial release
 
 ## license

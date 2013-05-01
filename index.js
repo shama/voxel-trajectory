@@ -5,11 +5,13 @@ module.exports = function(velocity, rotation, origin) {
     velocity = velocity.velocity;
   }
   velocity   = velocity || 1;
-  rotation   = rotation || {x:0,y:0};
-  origin     = origin   || {x:0,y:0,z:0};
-  return {
-    x: (velocity * Math.sin(rotation.x) * Math.sin(rotation.y)) + origin.x,
-    y: (velocity * Math.cos(rotation.x)) + origin.y,
-    z: (velocity * Math.sin(rotation.x) * Math.cos(rotation.y)) + origin.z
-  };
+  rotation   = rotation || [0, 0, 0];
+  origin     = origin   || [0, 0, 0];
+  if (!Array.isArray(rotation)) rotation = [rotation.x, rotation.y, rotation.z];
+  if (!Array.isArray(origin)) origin = [origin.x, origin.y, origin.z];
+  return [
+    (velocity * Math.sin(rotation[0]) * Math.sin(rotation[1])) + origin[0],
+    (velocity * Math.cos(rotation[0])) + origin[1],
+    (velocity * Math.sin(rotation[0]) * Math.cos(rotation[1])) + origin[2]
+  ];
 };
